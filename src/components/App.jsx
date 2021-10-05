@@ -4,7 +4,6 @@ import Details from "./Details";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 function App() {
 
  
@@ -12,14 +11,14 @@ function App() {
  const [startDate, setStartDate] = useState(new Date());
     
 
- const dateArray = orders.filter(data => {return data.orderDate===startDate})
+ 
  const newArray = orders.filter(data => {return data.orderStage==='new'})
  const processingArray = orders.filter(data => {return data.orderStage==='processing'})
  const finishedArray = orders.filter(data => {return data.orderStage==='finished'})
  const [current, setOrder] = useState([]);
 
   function allOrders(){
-   setOrder(orders) 
+   setOrder(orders)
   }
 
   
@@ -35,7 +34,12 @@ function App() {
   setOrder(finishedArray)
   }
 
- function dateOrders(){
+ function dateOrders(){  
+  var year=startDate.getFullYear();
+  var month=startDate.getMonth()+1;
+  var day=startDate.getDate();
+  var orderDate=(year.toString()+"-"+month.toString()+"-"+day.toString());
+  const dateArray = orders.filter(data => {return data.orderDate===orderDate})
   setOrder(dateArray)
   }
 
@@ -52,7 +56,7 @@ function App() {
 
       <button onClick={dateOrders}>Date</button>
 
-      <ReactDatePicker selected={startDate} onChange={(date) => setStartDate(date) } locale="en" />
+      <ReactDatePicker className="date" selected={startDate} onChange={(date) => setStartDate(date) } locale="en" />
       </header>
       
       

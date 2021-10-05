@@ -39,3 +39,9 @@ button {
   width: 250px;
   font-size: 18px;
 }
+
+.date{
+  position: absolute;
+  right: 320px;
+  bottom: 30px;
+}
